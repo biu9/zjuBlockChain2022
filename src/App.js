@@ -5,16 +5,21 @@ import { useEffect, useState } from "react";
 function checkCards() {
     const triggerBottom = window.innerHeight / 5 * 4;
     const cards = document.querySelectorAll("#card");
-    cards.forEach(card => {
+    const cardChoice = document.querySelectorAll("#voteChoice");
+    cards.forEach((card,index) => {
         //console.log(card.getBoundingClientRect().top);
         if(card.getBoundingClientRect().top < triggerBottom) {
             card.classList.add("translate-x-0");
             card.classList.remove("translate-x-4full");
+            cardChoice[index].classList.add("translate-x-0");
+            cardChoice[index].classList.remove("translate-x-4full");
         } else {
             card.classList.remove("translate-x-0");
             card.classList.add("translate-x-4full");
+            cardChoice[index].classList.remove("translate-x-0");
+            cardChoice[index].classList.add("translate-x-4full");
         }
-    })
+    });
 }
 
 export default function App() {
@@ -26,15 +31,15 @@ export default function App() {
         const cards = document.querySelectorAll("#card");
         cards.forEach((card,index) => {
             if(index === currentCardIndex) {
-                card.classList.add("scale-110");
+                card.classList.add("scale-125");
                 setCurrentCard(card);
             } else {
-                card.classList.remove("scale-110");
+                card.classList.remove("scale-125");
             }
         });
     },[currentCardIndex]);
     return (
-        <div className="flex p-6 bg-stdBg min-h-screen flex-col items-center space-y-6 overflow-hidden">
+        <div className="flex p-6 bg-stdBg min-h-screen flex-col items-center space-y-9 overflow-hidden">
             <div className="font-mono text-3xl font-bold">
                 Voting Board
             </div>
