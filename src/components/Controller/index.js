@@ -1,78 +1,8 @@
-const ControllerBtnUp = ({ currentCardIndex, setCurrentCardIndex, currentCard }) => {
-	return (
-		<div
-			onClick={() => {
-				const triggerBottom = currentCard.offsetHeight
-				const root = document.documentElement;
-				root.scrollTo({
-					top: root.scrollTop - triggerBottom,
-					behavior: "smooth"
-				});
-				if (currentCardIndex > 0)
-					setCurrentCardIndex(currentCardIndex - 1);
-				currentCard.classList.remove("-translate-x-1/2");
-				currentCard.classList.remove("translate-x-1/2");
-			}}
-			className="bg-black w-20 h-20 rounded-xl flex justify-center items-center cursor-pointer">
-			<div className="bg-up w-10 h-10 bg-cover" />
-		</div>
-	)
-}
-
-const ControllerBtnLeft = ({ currentCardIndex, setCurrentCardIndex, currentCard }) => {
-	return (
-		<div
-			onClick={() => {
-				currentCard.classList.remove("translate-x-1/2");
-				currentCard.classList.add("-translate-x-1/2");
-			}}
-			className="bg-black w-20 h-20 rounded-xl flex justify-center items-center cursor-pointer">
-			<div className="bg-up w-10 h-10 bg-cover transform -rotate-90" />
-		</div>
-	)
-}
-
-const ControllerBtnConfirm = ({ currentCardIndex, setCurrentCardIndex, currentCard }) => {
-	return (
-		<div className="bg-black w-20 h-20 rounded-xl flex justify-center items-center cursor-pointer">
-			<div className="w-10 h-10 border-2 border-white rounded-full" />
-		</div>
-	)
-}
-
-const ControllerBtnRight = ({ currentCardIndex, setCurrentCardIndex, currentCard }) => {
-	return (
-		<div
-			onClick={() => {
-				currentCard.classList.remove("-translate-x-1/2");
-				currentCard.classList.add("translate-x-1/2");
-			}}
-			className="bg-black w-20 h-20 rounded-xl flex justify-center items-center cursor-pointer">
-			<div className="bg-up w-10 h-10 bg-cover transform rotate-90" />
-		</div>
-	)
-}
-
-const ControllerBtnDown = ({ currentCardIndex, setCurrentCardIndex, currentCard }) => {
-	return (
-		<div
-			onClick={() => {
-				const triggerBottom = currentCard.offsetHeight
-				const root = document.documentElement;
-				root.scrollTo({
-					top: root.scrollTop + triggerBottom,
-					behavior: "smooth"
-				});
-				if (currentCardIndex < 99)
-					setCurrentCardIndex(currentCardIndex + 1);
-				currentCard.classList.remove("-translate-x-1/2");
-				currentCard.classList.remove("translate-x-1/2");
-			}}
-			className="bg-black w-20 h-20 rounded-xl flex justify-center items-center cursor-pointer">
-			<div className="bg-up w-10 h-10 bg-cover transform rotate-180" />
-		</div>
-	)
-}
+import { ControllerBtnConfirm } from "./components/ControllerBtnConfirm";
+import { ControllerBtnDown } from "./components/ControllerBtnDown";
+import { ControllerBtnLeft } from "./components/ControllerBtnLeft";
+import { ControllerBtnRight } from "./components/ControllerBtnRight";
+import { ControllerBtnUp } from "./components/ControllerBtnUp";
 
 export default function Controller({ currentCardIndex, setCurrentCardIndex, currentCard }) {
 	return (
