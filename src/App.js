@@ -1,6 +1,11 @@
 import Card from "./components/Card"
 import Controller from "./components/Controller";
 import { useEffect, useState } from "react";
+import UploadModal from "./components/UploadModal";
+import { Provider } from "react-redux";
+import store from "./store/index";
+import { openModal } from "./store/globalStateSlice";
+import { useDispatch } from "react-redux";
 
 function checkCards() {
 	const triggerBottom = window.innerHeight / 5 * 4;
@@ -22,6 +27,21 @@ function checkCards() {
 	});
 }
 
+const InitiateProposal = () => {
+	const dispatch = useDispatch();
+	return (
+		<div className="absolute right-0 bottom-0 p-10">
+			<div 
+			onClick={() => {
+				dispatch(openModal());
+			}}
+			className="bg-black text-white rounded-lg p-6 cursor-pointer shadow-2xl">
+				initiate proposal
+			</div>
+		</div>
+	)
+}
+
 export default function App() {
 	window.addEventListener("scroll", checkCards);
 	const [currentCardIndex, setCurrentCardIndex] = useState(0);
@@ -39,24 +59,28 @@ export default function App() {
 		});
 	}, [currentCardIndex]);
 	return (
-		<div className="flex p-6 bg-stdBg min-h-screen flex-col items-center space-y-9 overflow-hidden">
-			<div className="font-mono text-3xl font-bold">
-				Voting Board
+		<Provider store={store}>
+			<div className="flex p-6 bg-stdBg min-h-screen flex-col items-center space-y-9 overflow-hidden">
+				<div className="font-mono text-3xl font-bold">
+					Voting Board
+				</div>
+				{
+					tmp.map((_, index) => {
+						return (
+							<Card
+								key={index}
+							/>
+						)
+					})
+				}
+				<Controller
+					currentCard={currentCard}
+					currentCardIndex={currentCardIndex}
+					setCurrentCardIndex={setCurrentCardIndex}
+				/>
+				<InitiateProposal />
+				<UploadModal />
 			</div>
-			{
-				tmp.map((_, index) => {
-					return (
-						<Card
-							key={index}
-						/>
-					)
-				})
-			}
-			<Controller
-				currentCard={currentCard}
-				currentCardIndex={currentCardIndex}
-				setCurrentCardIndex={setCurrentCardIndex}
-			/>
-		</div>
+		</Provider>
 	)
 }
