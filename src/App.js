@@ -11,7 +11,7 @@ import checkCards from "./utils/checkCards";
 const InitiateProposal = () => {
 	const dispatch = useDispatch();
 	return (
-		<div className="absolute right-0 bottom-0 p-10">
+		<div className="fixed right-0 bottom-0 p-10">
 			<div 
 			onClick={() => {
 				dispatch(openModal());
