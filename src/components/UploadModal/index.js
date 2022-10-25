@@ -2,7 +2,8 @@ import { Modal } from "@material-ui/core";
 import { useSelector,useDispatch } from "react-redux";
 import { useState } from "react";
 import { closeModal } from "../../store/globalStateSlice";
-
+import createContract from "../../utils/createContract";
+import readContractData from "../../utils/readContractData";
 
 // 点击submit后创建新合约
 // 新合约对应一次投票
@@ -35,6 +36,8 @@ export default function UploadModal() {
                     className="bg-black text-white rounded-lg py-3 px-6 cursor-pointer w-full text-center">cancel</div>
                     <div 
                     onClick={() => {
+                        createContract();
+                        readContractData();
                         dispatch(closeModal());
                     }}
                     className="bg-black text-white rounded-lg py-3 px-6 cursor-pointer w-full text-center">submit</div>
