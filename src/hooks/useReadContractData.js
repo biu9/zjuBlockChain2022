@@ -1,6 +1,5 @@
 import Web3 from "web3";
 import { useState } from "react";
-
 const abi = require("../config/abi.json").abi;
 
 export default function useReadContractData(contractAddress) {
@@ -15,46 +14,56 @@ export default function useReadContractData(contractAddress) {
     const [proposer, setProposer] = useState("");
     const [agree, setAgree] = useState(0);
     const [disagree, setDisagree] = useState(0);
+    const [ifExpired, setIfExpired] = useState(false);
 
     votingContract.methods.getTitle().call({
         from: address
     },function(e,contract){
-        console.log("title",contract);
+        //console.log("title",contract);
         setTitle(contract);
     });
 
     votingContract.methods.getDescription().call({
         from: address
     },function(e,contract){
-        console.log("getDescription",contract);
+        //console.log("getDescription",contract);
         setContent(contract);
     });
 
     votingContract.methods.getProposer().call({
         from: address
     },function(e,contract){
-        console.log("getProposer",contract);
+        //console.log("getProposer",contract);
         setProposer(contract);
     });
 
     votingContract.methods.agreeNum().call({
         from: address
     },function(e,contract){
-        console.log("agreeNum",contract);
+        //console.log("agreeNum",contract);
         setAgree(contract);
     });
 
     votingContract.methods.disagreeNum().call({
         from: address
     },function(e,contract){
-        console.log("disagreeNum",contract);
+        //console.log("disagreeNum",contract);
         setDisagree(contract);
     });
+
+    votingContract.methods.ifExpired().call({
+        from: address
+    },function(e,contract){
+        //console.log("ifExpired",contract);
+        setIfExpired(contract);
+    });
+
     return {
         title,
         content,
         proposer,
         agree,
-        disagree
+        disagree,
+        ifExpired
     }
 }

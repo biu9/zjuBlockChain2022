@@ -53,4 +53,8 @@ contract Vote {
     function disagreeNum() public view returns (uint) {
         return disagree;
     }
+
+    function ifExpired() public view returns (bool) {
+        return block.timestamp > expire;
+    }
 }
