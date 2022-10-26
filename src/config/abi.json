@@ -1,104 +1,198 @@
 {
     "abi":[
         {
-            "constant": false,
             "inputs": [
                 {
-                    "name": "candidate",
-                    "type": "bytes32"
-                }
-            ],
-            "name": "voteForCandidate",
-            "outputs": [],
-            "payable": false,
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
+                    "internalType": "string",
+                    "name": "_title",
+                    "type": "string"
+                },
                 {
-                    "name": "candidateNames",
-                    "type": "bytes32[]"
+                    "internalType": "string",
+                    "name": "_description",
+                    "type": "string"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "_expire",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "string",
+                    "name": "_proposer",
+                    "type": "string"
                 }
             ],
-            "payable": false,
             "stateMutability": "nonpayable",
             "type": "constructor"
         },
         {
-            "constant": true,
-            "inputs": [
+            "inputs": [],
+            "name": "agree",
+            "outputs": [
                 {
+                    "internalType": "uint256",
                     "name": "",
                     "type": "uint256"
                 }
             ],
-            "name": "candidateList",
-            "outputs": [
-                {
-                    "name": "",
-                    "type": "bytes32"
-                }
-            ],
-            "payable": false,
             "stateMutability": "view",
             "type": "function"
         },
         {
-            "constant": true,
-            "inputs": [
-                {
-                    "name": "candidate",
-                    "type": "bytes32"
-                }
-            ],
-            "name": "totalVotesFor",
+            "inputs": [],
+            "name": "agreeNum",
             "outputs": [
                 {
+                    "internalType": "uint256",
                     "name": "",
-                    "type": "uint8"
+                    "type": "uint256"
                 }
             ],
-            "payable": false,
             "stateMutability": "view",
             "type": "function"
         },
         {
-            "constant": true,
-            "inputs": [
-                {
-                    "name": "candidate",
-                    "type": "bytes32"
-                }
-            ],
-            "name": "validCandidate",
+            "inputs": [],
+            "name": "description",
             "outputs": [
                 {
+                    "internalType": "string",
                     "name": "",
+                    "type": "string"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "disagree",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "disagreeNum",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "expire",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "getDescription",
+            "outputs": [
+                {
+                    "internalType": "string",
+                    "name": "",
+                    "type": "string"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "getProposer",
+            "outputs": [
+                {
+                    "internalType": "string",
+                    "name": "",
+                    "type": "string"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "getTitle",
+            "outputs": [
+                {
+                    "internalType": "string",
+                    "name": "",
+                    "type": "string"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "proposer",
+            "outputs": [
+                {
+                    "internalType": "string",
+                    "name": "",
+                    "type": "string"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "result",
+            "outputs": [
+                {
+                    "internalType": "string",
+                    "name": "",
+                    "type": "string"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "title",
+            "outputs": [
+                {
+                    "internalType": "string",
+                    "name": "",
+                    "type": "string"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "bool",
+                    "name": "_agree",
                     "type": "bool"
                 }
             ],
-            "payable": false,
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "constant": true,
-            "inputs": [
-                {
-                    "name": "",
-                    "type": "bytes32"
-                }
-            ],
-            "name": "votesReceived",
-            "outputs": [
-                {
-                    "name": "",
-                    "type": "uint8"
-                }
-            ],
-            "payable": false,
-            "stateMutability": "view",
+            "name": "vote",
+            "outputs": [],
+            "stateMutability": "nonpayable",
             "type": "function"
         }
     ]
