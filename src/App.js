@@ -27,7 +27,10 @@ export default function App() {
 	window.addEventListener("scroll", checkCards);
 	const [currentCardIndex, setCurrentCardIndex] = useState(0);
 	const [currentCard, setCurrentCard] = useState(null);
-	const tmp = new Array(100).fill(0);
+	const contractAddresses = JSON.parse(localStorage.getItem("address")); // 获取储存在localStroage中的已部署合约地址
+
+	console.log("deployed contract address : ",contractAddresses);
+
 	useEffect(() => {
 		const cards = document.querySelectorAll("#card");
 		cards.forEach((card, index) => {
@@ -46,9 +49,10 @@ export default function App() {
 					Voting Board
 				</div>
 				{
-					tmp.map((_, index) => {
+					contractAddresses.map((address, index) => {
 						return (
 							<Card
+								contractAddress={address}
 								key={index}
 							/>
 						)

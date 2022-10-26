@@ -1,26 +1,24 @@
-// vote title
-// vote content
-// vote contributor
-// support num & un-support num
-// stop time
+import useReadContractData from "../../hooks/useReadContractData"
 
-export default function Card() {
+export default function Card({ contractAddress }) {
+	const { title, content, proposer, agree, disagree } = useReadContractData(contractAddress);
 	return (
 		<div className="relative">
 			<div
 				id="card"
-				className="bg-stdBg p-6 w-96 shadow-std rounded-xl flex space-x-3 transform transition duration-1000 translate-x-0 relative z-10">
+				className="bg-stdBg p-6 min-w-96 shadow-std rounded-xl flex space-x-3 transform transition duration-1000 translate-x-0 relative z-10">
 				<img
 					className="w-32 rounded-xl"
 					src="https://typora-1309407228.cos.ap-shanghai.myqcloud.com/78216842_p2.jpg"
 					alt=""
 				/>
 				<div className="font-mono text-sm flex flex-col justify-center">
-					<div>title</div>
-					<div> advise content 1</div>
-					<div>by:thy</div>
-					<div>agree:1 | disagree:1</div>
+					<div>{title}</div>
+					<div>{content}</div>
+					<div>by:{proposer}</div>
+					<div>agree:{agree} | disagree:{disagree}</div>
 					<div>stop time:2020/11/6</div>
+					<div>address:{contractAddress}</div>
 				</div>
 			</div>
 			<div
