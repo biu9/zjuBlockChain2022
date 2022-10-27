@@ -4,6 +4,7 @@ const globalStateSlice = createSlice({
     name: 'globalState',
     initialState: {
         modalState: false,
+        ifAgree: null,
     },
     reducers: {
         openModal(state) {
@@ -12,8 +13,20 @@ const globalStateSlice = createSlice({
         closeModal(state) {
             state.modalState = false;
         },
+        agree(state) {
+            state.ifAgree = true;
+        },
+        disagree(state) {
+            state.ifAgree = false;
+        },
+        resetAgree(state) {
+            state.ifAgree = null;
+        }
     }
 });
 
-export const { openModal, closeModal } = globalStateSlice.actions;
+export const { 
+    openModal, closeModal,
+    agree, disagree, resetAgree
+ } = globalStateSlice.actions;
 export default globalStateSlice.reducer;

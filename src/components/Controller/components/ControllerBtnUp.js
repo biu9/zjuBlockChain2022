@@ -1,7 +1,13 @@
+import { useDispatch } from "react-redux";
+import { resetAgree } from "../../../store/globalStateSlice";
+
 export const ControllerBtnUp = ({ currentCardIndex, setCurrentCardIndex, currentCard }) => {
+	const dispatch = useDispatch();
+	
 	return (
 		<div
 			onClick={() => {
+				dispatch(resetAgree());
 				const triggerBottom = currentCard.offsetHeight
 				const root = document.documentElement;
 				root.scrollTo({

@@ -29,7 +29,7 @@ export default function App() {
 	const [currentCard, setCurrentCard] = useState(null);
 	const contractAddresses = JSON.parse(localStorage.getItem("address")) || []; // 获取储存在localStroage中的已部署合约地址
 
-	console.log("deployed contract address : ",contractAddresses);
+	//console.log("deployed contract address : ",contractAddresses);
 
 	useEffect(() => {
 		const cards = document.querySelectorAll("#card");

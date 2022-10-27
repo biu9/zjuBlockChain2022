@@ -1,7 +1,13 @@
+import { disagree } from "../../../store/globalStateSlice";
+import { useDispatch } from "react-redux";
+
 export const ControllerBtnLeft = ({ currentCardIndex, setCurrentCardIndex, currentCard }) => {
+	const dispatch = useDispatch();
+	
 	return (
 		<div
 			onClick={() => {
+				dispatch(disagree());
 				currentCard.classList.remove("translate-x-1/2");
 				currentCard.classList.add("-translate-x-1/2");
 			}}

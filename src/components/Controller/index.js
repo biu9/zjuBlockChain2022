@@ -4,7 +4,7 @@ import { ControllerBtnLeft } from "./components/ControllerBtnLeft";
 import { ControllerBtnRight } from "./components/ControllerBtnRight";
 import { ControllerBtnUp } from "./components/ControllerBtnUp";
 
-export default function Controller({ currentCardIndex, setCurrentCardIndex, currentCard }) {
+export default function Controller({ currentCardIndex, setCurrentCardIndex, currentCard }) {	
 	return (
 		<div className="fixed bottom-0 left-0 p-10 grid-cols-3 grid gap-1">
 			<div />
@@ -19,7 +19,11 @@ export default function Controller({ currentCardIndex, setCurrentCardIndex, curr
 				setCurrentCardIndex={setCurrentCardIndex}
 				currentCard={currentCard}
 			/>
-			<ControllerBtnConfirm />
+			<ControllerBtnConfirm 
+				currentCardIndex={currentCardIndex}
+				setCurrentCardIndex={setCurrentCardIndex}
+				currentCard={currentCard}
+			/>
 			<ControllerBtnRight
 				currentCardIndex={currentCardIndex}
 				setCurrentCardIndex={setCurrentCardIndex}
