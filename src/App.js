@@ -2,13 +2,68 @@ import Card from "./components/Card"
 import Controller from "./components/Controller";
 import { useEffect, useState } from "react";
 import UploadModal from "./components/UploadModal";
-import { Provider } from "react-redux";
-import store from "./store/index";
 import { openModal } from "./store/globalStateSlice";
 import { useDispatch,useSelector } from "react-redux";
 import checkCards from "./utils/checkCards";
 import openSerial from "./utils/openSerial";
-const InitiateProposal = ( { currentCardIndex, setCurrentCardIndex, currentCard } ) => {
+
+import { voteProposal } from "./utils/voteProposal";
+import { agree,disagree,resetAgree } from "./store/globalStateSlice";
+
+const confirm = (currentCardIndex, setCurrentCardIndex, currentCard,ifAgree) => {
+
+	const contractAddresses = JSON.parse(localStorage.getItem("address")) || []; // 获取储存在localStroage中的已部署合约地址
+
+	const currentContractAddress = contractAddresses[parseInt(currentCardIndex)];
+	const walletAddress = "0x28db1f2c2e21aefc7aa4f102c9adfb92d94c49bfeb93aaa11cf40f2f98c1f5c7";
+
+    voteProposal(currentContractAddress,ifAgree,walletAddress);
+    currentCard.classList.remove("-translate-x-1/2");
+    currentCard.classList.remove("translate-x-1/2");
+}
+
+const down = (currentCardIndex, setCurrentCardIndex, currentCard,dispatch) => {
+    dispatch(resetAgree());
+    const triggerBottom = currentCard.offsetHeight
+    const root = document.documentElement;
+    root.scrollTo({
+        top: root.scrollTop + triggerBottom,
+        behavior: "smooth"
+    });
+    if (currentCardIndex < 99) {
+        setCurrentCardIndex(currentCardIndex => currentCardIndex + 1);
+    }
+    currentCard.classList.remove("-translate-x-1/2");
+    currentCard.classList.remove("translate-x-1/2");
+}
+
+const up = (currentCardIndex, setCurrentCardIndex, currentCard,dispatch) => {
+    dispatch(resetAgree());
+    const triggerBottom = currentCard.offsetHeight
+    const root = document.documentElement;
+    root.scrollTo({
+        top: root.scrollTop - triggerBottom,
+        behavior: "smooth"
+    });
+    if (currentCardIndex > 0)
+        setCurrentCardIndex(currentCardIndex => currentCardIndex - 1);
+    currentCard.classList.remove("-translate-x-1/2");
+    currentCard.classList.remove("translate-x-1/2");
+}
+
+const left = (currentCardIndex, setCurrentCardIndex, currentCard,dispatch) => {
+    dispatch(disagree());
+    currentCard.classList.remove("translate-x-1/2");
+    currentCard.classList.add("-translate-x-1/2");
+}
+
+const right = (currentCardIndex, setCurrentCardIndex, currentCard,dispatch) => {
+    dispatch(agree());
+    currentCard.classList.remove("-translate-x-1/2");
+    currentCard.classList.add("translate-x-1/2");
+}
+
+const InitiateProposal = ( { setSerialRecv } ) => {
 	const dispatch = useDispatch();
 	const ifAgree = useSelector(state => state.globalState.ifAgree);
 	return (
@@ -22,7 +77,7 @@ const InitiateProposal = ( { currentCardIndex, setCurrentCardIndex, currentCard 
 			</div>
 			<div 
 			onClick={() => {
-				openSerial(currentCardIndex, setCurrentCardIndex, currentCard,ifAgree,dispatch);
+				openSerial(setSerialRecv);
 			}}
 			className="bg-black text-white rounded-lg p-6 cursor-pointer shadow-2xl">
 				open serial
@@ -36,6 +91,8 @@ export default function App() {
 	const [currentCardIndex, setCurrentCardIndex] = useState(0);
 	const [currentCard, setCurrentCard] = useState(null);
 	const contractAddresses = JSON.parse(localStorage.getItem("address")) || []; // 获取储存在localStroage中的已部署合约地址
+	const [serialRecv, setSerialRecv] = useState("");
+	const dispatch = useDispatch();
 
 	//console.log("deployed contract address : ",contractAddresses);
 
@@ -47,37 +104,44 @@ export default function App() {
 				setCurrentCard(card);
 			} else {
 				card.classList.remove("scale-125");
+				card.classList.remove("-translate-x-1/2");
+				card.classList.remove("translate-x-1/2");
 			}
 		});
 	}, [currentCardIndex]);
+
+	useEffect(() => {
+		console.log("serialRecv : ",serialRecv);
+		if(currentCard) {
+			//down(currentCardIndex, setCurrentCardIndex, currentCard,dispatch);
+			left(currentCardIndex, setCurrentCardIndex, currentCard,dispatch);			
+		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	},[serialRecv]);
 	return (
-		<Provider store={store}>
-			<div className="flex p-6 bg-stdBg min-h-screen flex-col items-center space-y-9 overflow-hidden">
-				<div className="font-mono text-3xl font-bold">
-					Voting Board
-				</div>
-				{
-					contractAddresses.map((address, index) => {
-						return (
-							<Card
-								contractAddress={address}
-								key={index}
-							/>
-						)
-					})
-				}
-				<Controller
-					currentCard={currentCard}
-					currentCardIndex={currentCardIndex}
-					setCurrentCardIndex={setCurrentCardIndex}
-				/>
-				<InitiateProposal 
-					currentCard={currentCard}
-					currentCardIndex={currentCardIndex}
-					setCurrentCardIndex={setCurrentCardIndex}
-				/>
-				<UploadModal />
+		<div className="flex p-6 bg-stdBg min-h-screen flex-col items-center space-y-9 overflow-hidden">
+			<div className="font-mono text-3xl font-bold">
+				Voting Board
 			</div>
-		</Provider>
+			{
+				contractAddresses.map((address, index) => {
+					return (
+						<Card
+							contractAddress={address}
+							key={index}
+						/>
+					)
+				})
+			}
+			<Controller
+				currentCard={currentCard}
+				currentCardIndex={currentCardIndex}
+				setCurrentCardIndex={setCurrentCardIndex}
+			/>
+			<InitiateProposal 
+				setSerialRecv={setSerialRecv}
+			/>
+			<UploadModal />
+		</div>
 	)
 }
