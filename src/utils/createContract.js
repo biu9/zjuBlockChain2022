@@ -19,7 +19,7 @@ export default function createContract(title,content,proposer,address) {
         gas: '4700000',
         gasPrice: '3000000000000'
     }).then(function(newContractInstance){
-        //console.log("the address of deployed contract",newContractInstance.options.address); // 带有新合约地址的合约实例
+        console.log("the address of deployed contract",newContractInstance.options.address); // 带有新合约地址的合约实例
         contractAddresses.push(newContractInstance.options.address);
         localStorage.setItem("address",JSON.stringify(contractAddresses));
         return newContractInstance;

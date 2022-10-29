@@ -5,11 +5,12 @@ import UploadModal from "./components/UploadModal";
 import { Provider } from "react-redux";
 import store from "./store/index";
 import { openModal } from "./store/globalStateSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import checkCards from "./utils/checkCards";
 import openSerial from "./utils/openSerial";
-const InitiateProposal = () => {
+const InitiateProposal = ( { currentCardIndex, setCurrentCardIndex, currentCard } ) => {
 	const dispatch = useDispatch();
+	const ifAgree = useSelector(state => state.globalState.ifAgree);
 	return (
 		<div className="fixed right-0 bottom-0 p-10 font-mono flex flex-col space-y-6 text-center">
 			<div 
@@ -21,7 +22,7 @@ const InitiateProposal = () => {
 			</div>
 			<div 
 			onClick={() => {
-				openSerial();
+				openSerial(currentCardIndex, setCurrentCardIndex, currentCard,ifAgree,dispatch);
 			}}
 			className="bg-black text-white rounded-lg p-6 cursor-pointer shadow-2xl">
 				open serial
@@ -70,7 +71,11 @@ export default function App() {
 					currentCardIndex={currentCardIndex}
 					setCurrentCardIndex={setCurrentCardIndex}
 				/>
-				<InitiateProposal />
+				<InitiateProposal 
+					currentCard={currentCard}
+					currentCardIndex={currentCardIndex}
+					setCurrentCardIndex={setCurrentCardIndex}
+				/>
 				<UploadModal />
 			</div>
 		</Provider>

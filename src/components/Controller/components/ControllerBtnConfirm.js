@@ -1,4 +1,3 @@
-import openSerial from "../../../utils/openSerial"
 import { voteProposal } from "../../../utils/voteProposal"
 import { useSelector } from "react-redux"
 
@@ -12,8 +11,9 @@ export const ControllerBtnConfirm = ({ currentCardIndex, setCurrentCardIndex, cu
 	return (
 		<div 
 		onClick={() => {
-			//openSerial();
 			voteProposal(currentContractAddress,ifAgree,walletAddress);
+			currentCard.classList.remove("-translate-x-1/2");
+			currentCard.classList.remove("translate-x-1/2");
 		}}
 		className="bg-black w-20 h-20 rounded-xl flex justify-center items-center cursor-pointer">
 			<div className="w-10 h-10 border-2 border-white rounded-full" />
