@@ -110,11 +110,29 @@ export default function App() {
 		});
 	}, [currentCardIndex]);
 
+	const [tmpStep,setTmpStep] = useState(0);
+
 	useEffect(() => {
-		console.log("serialRecv : ",serialRecv);
+		//console.log("serialRecv : ",serialRecv);
 		if(currentCard) {
-			//down(currentCardIndex, setCurrentCardIndex, currentCard,dispatch);
-			left(currentCardIndex, setCurrentCardIndex, currentCard,dispatch);			
+			console.log(tmpStep)
+			if(tmpStep === 0) {
+				console.log("serialRecv : down");
+				down(currentCardIndex, setCurrentCardIndex, currentCard,dispatch);
+			} else if(tmpStep === 1) {
+				console.log("serialRecv : left");
+				left(currentCardIndex, setCurrentCardIndex, currentCard,dispatch);
+			} else if(tmpStep === 2) {
+				console.log("serialRecv : down");
+				down(currentCardIndex, setCurrentCardIndex, currentCard,dispatch);
+			} else if(tmpStep === 3) {
+				console.log("serialRecv : right");
+				right(currentCardIndex, setCurrentCardIndex, currentCard,dispatch);
+			} else if(tmpStep === 4) {
+				console.log("serialRecv : up");
+				up(currentCardIndex, setCurrentCardIndex, currentCard,dispatch);
+			}
+			setTmpStep(tmpStep + 1 > 4 ? 0 : tmpStep + 1);
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	},[serialRecv]);

@@ -1,5 +1,5 @@
 import Web3 from "web3";
-import { useState } from "react";
+import { useRef, useState } from "react";
 const abi = require("../config/abi.json").abi;
 
 export default function useReadContractData(contractAddress) {
@@ -9,61 +9,63 @@ export default function useReadContractData(contractAddress) {
     const votingContract = new web3.eth.Contract(abi, contractAddress);
     const address = "0xdE5340543EA7b17A321095ec1eAdC911d1c0C3A2";
 
-    const [title, setTitle] = useState("");
-    const [content, setContent] = useState("");
-    const [proposer, setProposer] = useState("");
-    const [agree, setAgree] = useState(0);
-    const [disagree, setDisagree] = useState(0);
-    const [ifExpired, setIfExpired] = useState(false);
+    const title = useRef("");
+    const content = useRef("");
+    const proposer = useRef("");
+    const agree = useRef(0);
+    const disagree = useRef(0);
+    const ifExpired = useRef(false);
 
     votingContract.methods.getTitle().call({
         from: address
     },function(e,contract){
-        //console.log("title",contract);
-        setTitle(contract);
+        //setTitle(contract);
+        title.current = contract;
     });
 
     votingContract.methods.getDescription().call({
         from: address
     },function(e,contract){
-        //console.log("getDescription",contract);
-        setContent(contract);
+        //setContent(contract);
+        content.current = contract;
     });
 
     votingContract.methods.getProposer().call({
         from: address
     },function(e,contract){
-        //console.log("getProposer",contract);
-        setProposer(contract);
+        //setProposer(contract);
+        proposer.current = contract;
     });
 
     votingContract.methods.agreeNum().call({
         from: address
     },function(e,contract){
-        //console.log("agreeNum",contract);
-        setAgree(contract);
+        //setAgree(contract);
+        agree.current = contract;
     });
 
     votingContract.methods.disagreeNum().call({
         from: address
     },function(e,contract){
-        //console.log("disagreeNum",contract);
-        setDisagree(contract);
+        //setDisagree(contract);
+        disagree.current = contract;
     });
 
     votingContract.methods.ifExpired().call({
         from: address
     },function(e,contract){
-        //console.log("ifExpired",contract);
-        setIfExpired(contract);
+        //setIfExpired(contract);
+        ifExpired.current = contract;
     });
 
-    return {
-        title,
-        content,
-        proposer,
-        agree,
-        disagree,
-        ifExpired
+    const res = {
+        title:title.current,
+        content:content.current,
+        proposer:proposer.current,
+        agree:agree.current,
+        disagree:disagree.current,
+        ifExpired:ifExpired.current
     }
+
+    return res;
 }

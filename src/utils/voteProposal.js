@@ -2,7 +2,7 @@ import Web3 from "web3";
 
 const abi = require("../config/abi.json").abi;
 
-export const voteProposal = (contractAddress, vote,walletAddress) => {
+export const voteProposal = (contractAddress, vote=true,walletAddress) => {
     const web3 = new Web3(new Web3.providers.HttpProvider("HTTP://127.0.0.1:8545"));
     
     //console.log("contract address : ",contractAddress);

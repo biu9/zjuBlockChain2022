@@ -1,6 +1,7 @@
 import useReadContractData from "../../hooks/useReadContractData"
 
 export default function Card({ contractAddress }) {
+	//console.log("card mount");
 	const { title, content, proposer, agree, disagree,ifExpired } = useReadContractData(contractAddress);
 	const cardBorderStyles = [
 		"bg-stdBg p-6 min-w-96 shadow-std rounded-xl flex space-x-3 transform transition duration-1000 translate-x-0 relative z-10 border-l-8 border-green-600",
