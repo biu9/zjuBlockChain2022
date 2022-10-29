@@ -7,17 +7,24 @@ import store from "./store/index";
 import { openModal } from "./store/globalStateSlice";
 import { useDispatch } from "react-redux";
 import checkCards from "./utils/checkCards";
-
+import openSerial from "./utils/openSerial";
 const InitiateProposal = () => {
 	const dispatch = useDispatch();
 	return (
-		<div className="fixed right-0 bottom-0 p-10">
+		<div className="fixed right-0 bottom-0 p-10 font-mono flex flex-col space-y-6 text-center">
 			<div 
 			onClick={() => {
 				dispatch(openModal());
 			}}
 			className="bg-black text-white rounded-lg p-6 cursor-pointer shadow-2xl">
 				initiate proposal
+			</div>
+			<div 
+			onClick={() => {
+				openSerial();
+			}}
+			className="bg-black text-white rounded-lg p-6 cursor-pointer shadow-2xl">
+				open serial
 			</div>
 		</div>
 	)

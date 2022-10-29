@@ -6,7 +6,7 @@ import { ControllerBtnUp } from "./components/ControllerBtnUp";
 
 export default function Controller({ currentCardIndex, setCurrentCardIndex, currentCard }) {	
 	return (
-		<div className="fixed bottom-0 left-0 p-10 grid-cols-3 grid gap-1">
+		<div className="fixed bottom-0 left-0 p-10 grid-cols-3 grid gap-1 z-50">
 			<div />
 			<ControllerBtnUp
 				currentCardIndex={currentCardIndex}
