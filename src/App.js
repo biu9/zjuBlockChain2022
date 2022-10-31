@@ -116,6 +116,17 @@ export default function App() {
 		console.log("serialRecv : ",serialRecv);
 		if(currentCard) {
 			console.log(tmpStep);
+			if(serialRecv === 'U') {
+				up(currentCardIndex, setCurrentCardIndex, currentCard,dispatch);
+			} else if(serialRecv === 'D') {
+				down(currentCardIndex, setCurrentCardIndex, currentCard,dispatch);
+			} else if(serialRecv === 'L') {
+				left(currentCardIndex, setCurrentCardIndex, currentCard,dispatch);
+			} else if(serialRecv === 'R') {
+				right(currentCardIndex, setCurrentCardIndex, currentCard,dispatch);
+			} else if(serialRecv === 'C') {
+				confirm(currentCardIndex, setCurrentCardIndex, currentCard,true);
+			}
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	},[serialRecv]);
