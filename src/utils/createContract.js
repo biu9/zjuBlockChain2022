@@ -3,7 +3,7 @@ import Web3 from "web3";
 const abi = require("../config/abi.json").abi;
 const deployData = require("../config/contractDeployData.json").data;
 const studentDAO_abi = require("../config/studentDAO_abi.json").abi;
-const studentDAO_address = "0xC51233a070Dc40429448334cd545706ae52D5309";
+const studentDAO_address = "0xE9c8A9396f2D9aEd8dDb6D4cA7810dad59aC12eF";
 
 export default function createContract(title,content,proposer,privateKey) {
     const EXPIRE = 10000;
