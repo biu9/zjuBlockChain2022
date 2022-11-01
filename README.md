@@ -11,6 +11,16 @@
 2. 左侧键盘点击执行对应操作，左滑&confirm后投反对票,右滑&confirm后投赞成票
 3. 点击initiate proposal发起一次投票
 
+#### 演示截图
+
+1. 获取初始化代币
+    ![20221101224606](https://typora-1309407228.cos.ap-shanghai.myqcloud.com/20221101224606.png)
+2. 投票
+   ![20221101224918](https://typora-1309407228.cos.ap-shanghai.myqcloud.com/20221101224918.png)
+3. 发起投票
+   ![20221101224949](https://typora-1309407228.cos.ap-shanghai.myqcloud.com/20221101224949.png)
+   ![20221101225003](https://typora-1309407228.cos.ap-shanghai.myqcloud.com/20221101225003.png)
+
 #### 技术栈
 
 - react
