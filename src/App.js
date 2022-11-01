@@ -6,6 +6,7 @@ import { openModal } from "./store/globalStateSlice";
 import { useDispatch,useSelector } from "react-redux";
 import checkCards from "./utils/checkCards";
 import openSerial from "./utils/openSerial";
+import { getInitCoin } from "./utils/getInitCoin";
 
 import { voteProposal } from "./utils/voteProposal";
 import { agree,disagree,resetAgree } from "./store/globalStateSlice";
@@ -81,6 +82,13 @@ const InitiateProposal = ( { setSerialRecv } ) => {
 			}}
 			className="bg-black text-white rounded-lg p-6 cursor-pointer shadow-2xl">
 				open serial
+			</div>
+			<div
+			onClick={() => {
+				getInitCoin();
+			}}
+			className="bg-black text-white rounded-lg p-6 cursor-pointer shadow-2xl">
+				get init coid
 			</div>
 		</div>
 	)

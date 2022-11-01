@@ -6,7 +6,7 @@ export const ControllerBtnConfirm = ({ currentCardIndex, setCurrentCardIndex, cu
 	const contractAddresses = JSON.parse(localStorage.getItem("address")) || []; // 获取储存在localStroage中的已部署合约地址
 
 	const currentContractAddress = contractAddresses[parseInt(currentCardIndex)];
-	const walletAddress = "0x28db1f2c2e21aefc7aa4f102c9adfb92d94c49bfeb93aaa11cf40f2f98c1f5c7";
+	const walletAddress = "05da7a3e88a6fe43aa5e859adaf971504270a664dd7a0abeef8d5d033b3f0039";
 	
 	return (
 		<div 
